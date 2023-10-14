@@ -28,6 +28,11 @@ namespace DogHouseService.Core.Services
                 throw new ArgumentNullException("Sort attribute and sort order can't be null.");
             }
 
+            if (pageNumber < 1 || pageSize < 1)
+            {
+                throw new ArgumentException("Page number and page size can't be less than 1.");
+            }
+
             var dogs = await _dogsRepository.GetDogsAsync();
 
             dogs = dogs.AsQueryable().OrderBy($"{sortAttribute.Normalize()} {sortOrder}")
