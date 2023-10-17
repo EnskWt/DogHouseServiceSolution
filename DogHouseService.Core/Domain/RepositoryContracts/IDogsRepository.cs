@@ -1,4 +1,5 @@
 ﻿using DogHouseService.Core.Domain.Models;
+using DogHouseService.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,14 @@ namespace DogHouseService.Core.Domain.RepositoryContracts
     public interface IDogsRepository
     {
         /// <summary>
-        /// Retrieves a list of dogs from the database.
+        /// Retrieves all dogs from the database as sorted and paginated list.
         /// </summary>
-        /// <returns>Return all dogs from database.</returns>
-        Task<List<Dog>> GetDogsAsync();
+        /// <param name="sortAttribute">Attribute to sort by.</param>
+        /// <param name="sortOrder">Order to sort by.</param>
+        /// <param name="pageNumber">Page number of paginated list.</param>
+        /// <param name="pageSize">Size of page for pagination.</param>
+        /// <returns>Return a sorted and paginated list of Dog domain class.</returns>
+        Task<List<Dog>> GetSortedAndPaginatedDogsAsync(string sortAttribute, SortOrderOptions? sortOrder, int pageNumber, int pageSize);
 
         /// <summary>
         /// Retrieves a dog from the database by name.

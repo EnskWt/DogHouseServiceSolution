@@ -1,6 +1,6 @@
 ﻿using DogHouseService.Core.DataTransferObjects.DogObjects;
 using DogHouseService.Core.Enums;
-using DogHouseService.Core.ServiceContracts;
+using DogHouseService.Core.ServiceContracts.DogsServicesContracts;
 using DogHouseService.Web.Filters.ActionFilters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;

@@ -1,16 +1,10 @@
 ﻿using DogHouseService.Core.DataTransferObjects.DogObjects;
 using DogHouseService.Core.Domain.RepositoryContracts;
 using DogHouseService.Core.Enums;
-using DogHouseService.Core.ServiceContracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DogHouseService.Core.ServiceContracts.DogsServicesContracts;
 using System.Linq.Dynamic.Core;
-using DogHouseService.Core.Domain.Models;
 
-namespace DogHouseService.Core.Services
+namespace DogHouseService.Core.Services.DogsServices
 {
     public class DogsGetterService : IDogsGetterService
     {
@@ -23,7 +17,7 @@ namespace DogHouseService.Core.Services
 
         public async Task<List<DogResponse>> GetDogs(string? sortAttribute, SortOrderOptions? sortOrder, int pageNumber, int pageSize)
         {
-            if (string.IsNullOrEmpty(sortAttribute) || sortOrder == null )
+            if (string.IsNullOrEmpty(sortAttribute) || sortOrder == null)
             {
                 throw new ArgumentNullException("Sort attribute and sort order can't be null.");
             }
@@ -33,26 +27,9 @@ namespace DogHouseService.Core.Services
                 throw new ArgumentException("Page number and page size can't be less than 1.");
             }
 
-            var dogs = await _dogsRepository.GetDogsAsync();
-
-            dogs = dogs.AsQueryable().OrderBy($"{sortAttribute.Normalize()} {sortOrder}")
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            var dogs = await _dogsRepository.GetSortedAndPaginatedDogsAsync(sortAttribute, sortOrder, pageNumber, pageSize);
 
             return dogs.Select(dog => dog.ToDogResponse()).ToList();
-        }
-
-        public async Task<DogResponse?> GetDogByName(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new ArgumentNullException("Name can't be null.");
-            }
-
-            var dog = await _dogsRepository.GetDogByNameAsync(name);
-
-            return dog?.ToDogResponse();
         }
     }
 }

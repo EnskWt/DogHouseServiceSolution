@@ -1,11 +1,11 @@
 ﻿using DogHouseService.Core.Domain.RepositoryContracts;
-using DogHouseService.Core.ServiceContracts;
-using DogHouseService.Core.Services;
 using DogHouseService.Infrastructure.DatabaseContext;
 using DogHouseService.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
+using DogHouseService.Core.ServiceContracts.DogsServicesContracts;
+using DogHouseService.Core.Services.DogsServices;
 
 namespace DogHouseService.Web.StartupExtensions
 {
@@ -34,6 +34,7 @@ namespace DogHouseService.Web.StartupExtensions
 
             services.AddScoped<IDogsGetterService, DogsGetterService>(); // Add DogsGetterService to the DI container.
             services.AddScoped<IDogsAdderService, DogsAdderService>(); // Add DogsAdderService to the DI container.
+            services.AddScoped<IDogsFinderService, DogsFinderService>(); // Add DogsFinderService to the DI container.
 
             // Add DbContext to the DI container.
             services.AddDbContext<ApplicationDbContext>(options =>

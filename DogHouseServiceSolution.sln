@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogHouseService.Web", "DogHouseService.Web\DogHouseService.Web.csproj", "{D5BD4699-91A6-4DAB-BD64-16EB160314FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogHouseService.Web", "DogHouseService.Web\DogHouseService.Web.csproj", "{D5BD4699-91A6-4DAB-BD64-16EB160314FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogHouseService.Core", "DogHouseService.Core\DogHouseService.Core.csproj", "{8D537B66-29AA-4272-BED9-5F27A17E2043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogHouseService.Core", "DogHouseService.Core\DogHouseService.Core.csproj", "{8D537B66-29AA-4272-BED9-5F27A17E2043}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{41743BDA-4E03-4CFB-89E6-930568FBBE17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogHouseService.Infrastructure", "DogHouseService.Infrastructure\DogHouseService.Infrastructure.csproj", "{AE8AE585-131F-4C4E-9943-BA008C34736F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogHouseService.Infrastructure", "DogHouseService.Infrastructure\DogHouseService.Infrastructure.csproj", "{AE8AE585-131F-4C4E-9943-BA008C34736F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AE019DD6-F2BD-4FD8-A933-5BD647A68A23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogHouseService.ControllerTests", "DogHouseService.ControllerTests\DogHouseService.ControllerTests.csproj", "{0F251A7A-7EC7-4189-84D8-518CD742B30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogHouseService.ControllerTests", "DogHouseService.ControllerTests\DogHouseService.ControllerTests.csproj", "{0F251A7A-7EC7-4189-84D8-518CD742B30D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogHouseService.ServiceTests", "DogHouseService.ServiceTests\DogHouseService.ServiceTests.csproj", "{C017BE2D-F458-4FBE-AD60-7B7A4591C5F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogHouseService.ServiceTests", "DogHouseService.ServiceTests\DogHouseService.ServiceTests.csproj", "{C017BE2D-F458-4FBE-AD60-7B7A4591C5F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,8 +2,9 @@
 using DogHouseService.Core.DataTransferObjects.DogObjects;
 using DogHouseService.Core.Domain.Models;
 using DogHouseService.Core.Domain.RepositoryContracts;
-using DogHouseService.Core.ServiceContracts;
+using DogHouseService.Core.ServiceContracts.DogsServicesContracts;
 using DogHouseService.Core.Services;
+using DogHouseService.Core.Services.DogsServices;
 using FluentAssertions;
 using Moq;
 
@@ -13,8 +14,8 @@ namespace DogHouseService.ServiceTests
     {
         private readonly IDogsAdderService _dogsAdderService;
 
-        private readonly Mock<IDogsGetterService> _dogsGetterServiceMock;
-        private readonly IDogsGetterService _dogsGetterService;
+        private readonly Mock<IDogsFinderService> _dogsFinderServiceMock;
+        private readonly IDogsFinderService _dogsFinderService;
 
         private readonly Mock<IDogsRepository> _dogsRepositoryMock;
         private readonly IDogsRepository _dogsRepository;
@@ -28,10 +29,10 @@ namespace DogHouseService.ServiceTests
             _dogsRepositoryMock = new Mock<IDogsRepository>();
             _dogsRepository = _dogsRepositoryMock.Object;
 
-            _dogsGetterServiceMock = new Mock<IDogsGetterService>();
-            _dogsGetterService = _dogsGetterServiceMock.Object;
+            _dogsFinderServiceMock = new Mock<IDogsFinderService>();
+            _dogsFinderService = _dogsFinderServiceMock.Object;
 
-            _dogsAdderService = new DogsAdderService(_dogsRepository, _dogsGetterService);
+            _dogsAdderService = new DogsAdderService(_dogsRepository, _dogsFinderService);
         }
 
         [Fact]
@@ -56,7 +57,7 @@ namespace DogHouseService.ServiceTests
             // Arrange
             var dogAddRequest = _fixture.Create<DogAddRequest>();
             var exceptionDog = _fixture.Create<Dog>();
-            _dogsGetterServiceMock.Setup(x => x.GetDogByName(It.IsAny<string>())).ReturnsAsync(exceptionDog.ToDogResponse());
+            _dogsFinderServiceMock.Setup(x => x.FindDogByName(It.IsAny<string>())).ReturnsAsync(exceptionDog.ToDogResponse());
 
             // Act
             Func<Task> action = async () =>
@@ -76,7 +77,7 @@ namespace DogHouseService.ServiceTests
             var dog = dogAddRequest.ToDog();
             var dogResponse = dog.ToDogResponse();
 
-            _dogsGetterServiceMock.Setup(x => x.GetDogByName(It.IsAny<string>())).ReturnsAsync(null as DogResponse);
+            _dogsFinderServiceMock.Setup(x => x.FindDogByName(It.IsAny<string>())).ReturnsAsync(null as DogResponse);
             _dogsRepositoryMock.Setup(x => x.AddDogAsync(It.IsAny<Dog>())).ReturnsAsync(dog);
 
             // Act
@@ -86,10 +87,5 @@ namespace DogHouseService.ServiceTests
             result.Should().BeOfType<DogResponse>();
             result.Should().BeEquivalentTo(dogResponse);
         }
-
-
-        
-
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿using DogHouseService.Core.DataTransferObjects.DogObjects;
 using DogHouseService.Core.Domain.RepositoryContracts;
-using DogHouseService.Core.ServiceContracts;
+using DogHouseService.Core.ServiceContracts.DogsServicesContracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DogHouseService.Core.Services
+namespace DogHouseService.Core.Services.DogsServices
 {
     public class DogsAdderService : IDogsAdderService
     {
         private readonly IDogsRepository _dogsRepository;
 
-        private readonly IDogsGetterService _dogsGetterService;
+        private readonly IDogsFinderService _dogsFinderService;
 
-        public DogsAdderService(IDogsRepository dogsRepository, IDogsGetterService dogsGetterService)
+        public DogsAdderService(IDogsRepository dogsRepository, IDogsFinderService dogsFinderService)
         {
             _dogsRepository = dogsRepository;
-            _dogsGetterService = dogsGetterService;
+            _dogsFinderService = dogsFinderService;
         }
 
         public async Task<DogResponse> AddDog(DogAddRequest? dogAddRequest)
@@ -28,8 +28,8 @@ namespace DogHouseService.Core.Services
             {
                 throw new ArgumentNullException("Dog add request can't be null.");
             }
-            
-            var isDogNameTaken = await _dogsGetterService.GetDogByName(dogAddRequest.Name) != null;
+
+            var isDogNameTaken = await _dogsFinderService.FindDogByName(dogAddRequest.Name) != null;
             if (isDogNameTaken)
             {
                 throw new ArgumentException("Dog name is already taken.");

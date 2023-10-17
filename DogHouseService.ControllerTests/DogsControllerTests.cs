@@ -1,7 +1,7 @@
 ﻿using AutoFixture;
 using DogHouseService.Core.DataTransferObjects.DogObjects;
 using DogHouseService.Core.Enums;
-using DogHouseService.Core.ServiceContracts;
+using DogHouseService.Core.ServiceContracts.DogsServicesContracts;
 using DogHouseService.Web.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;

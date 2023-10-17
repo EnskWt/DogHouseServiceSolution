@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DogHouseService.Core.ServiceContracts
+namespace DogHouseService.Core.ServiceContracts.DogsServicesContracts
 {
     /// <summary>
     /// Represents bussiness logic for adding dogs.
